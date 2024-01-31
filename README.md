@@ -1,2 +1,2 @@
 # rock-paper-scissors
-Odin Project exercise
+an Odin Project exercise
