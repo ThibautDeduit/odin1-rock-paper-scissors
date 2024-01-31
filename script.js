@@ -9,4 +9,8 @@ function getPlayerChoice() {
 	return playerChoice
 }
 
-console.log("Your choice is: " + getPlayerChoice())
+function getCpuChoice() {
+	return weapons[parseInt(Math.random()*3)]
+}
+console.log("The player chooses: " + getPlayerChoice())
+console.log("The computer chooses: " + getCpuChoice())
