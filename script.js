@@ -1,106 +1,99 @@
-let refereeMessage = "Here comes a new challenger!"
 const weapons = ["Rock", "Paper", "Scissors"]
 
 let playerScore = 0
 let cpuScore = 0
-let scoreMessage = `Score: ${playerScore} - ${cpuScore}`
 
-function promptPlayer() {
-	let playerInput =  prompt(
-		`${refereeMessage}\n
-		${scoreMessage}\n
-		Do you choose Rock, Paper, or Scissors?`
-	)
-	let capitalizedPlayerInput = playerInput.at(0).toUpperCase()
-		+ playerInput.slice(1).toLowerCase()
-	return capitalizedPlayerInput
+function activateWeaponButtons() {
+	let weaponButtons = document.querySelectorAll("button")
+	weaponButtons.forEach((button) => {
+		button.addEventListener("click", playRound)
+	})
 }
 
-function getPlayerWeaponChoice() {
-	let playerWeaponChoice
-	while (!weapons.includes(playerWeaponChoice)) {
-		playerWeaponChoice = promptPlayer()
-	}
-	return playerWeaponChoice
-}
+function playRound() {
+	let playerWeapon = this.value
+	let cpuWeapon = weapons[parseInt(Math.random()*3)]
 
-function getCpuWeaponChoice() {
-	return weapons[parseInt(Math.random()*3)]
-}
-
-function playRound(weapon1, weapon2) {
-	switch (weapon1) {
+	switch (playerWeapon) {
 		case "Rock":
-			switch (weapon2) {
+			switch (cpuWeapon) {
 				case "Rock":
-					drawRound(weapon1, weapon2)
+					drawRound(playerWeapon, cpuWeapon)
 					break
 				case "Paper":
-					loseRound(weapon1, weapon2)
+					loseRound(playerWeapon, cpuWeapon)
 					break
 				case "Scissors":
-					winRound(weapon1, weapon2)
+					winRound(playerWeapon, cpuWeapon)
 					break
 				default:
-					refereeMessage = "Something's wrong with weapon2"
+					refereeMessage = "Something's wrong with cpuWeapon"
 					break
 			}
 			break
 		case "Paper":
-			switch (weapon2) {
+			switch (cpuWeapon) {
 				case "Rock":
-					winRound(weapon1, weapon2)
+					winRound(playerWeapon, cpuWeapon)
 					break
 				case "Paper":
-					drawRound(weapon1, weapon2)
+					drawRound(playerWeapon, cpuWeapon)
 					break
 				case "Scissors":
-					loseRound(weapon1, weapon2)
+					loseRound(playerWeapon, cpuWeapon)
 					break
 				default:
-					refereeMessage = "Something's wrong with weapon2"
+					refereeMessage = "Something's wrong with cpuWeapon"
 					break
 			}
 			break
 		case "Scissors":
-			switch (weapon2) {
+			switch (cpuWeapon) {
 				case "Rock":
-					loseRound(weapon1, weapon2)
+					loseRound(playerWeapon, cpuWeapon)
 					break
 				case "Paper":
-					winRound(weapon1, weapon2)
+					winRound(playerWeapon, cpuWeapon)
 					break
 				case "Scissors":
-					drawRound(weapon1, weapon2)
+					drawRound(playerWeapon, cpuWeapon)
 					break
 				default:
-					refereeMessage = "Something's wrong with weapon2"
+					refereeMessage = "Something's wrong with cpuWeapon"
 					break
 			}
 			break
 		default:
-			refereeMessage = "Something's wrong with weapon1"
+			refereeMessage = "Something's wrong with playerWeapon"
 			break
 	}
-	updateScore()
 }
 
-function winRound(weapon1, weapon2) {
-	refereeMessage = `You win! ${weapon1} beats ${weapon2}`
+function winRound(playerWeapon, cpuWeapon) {
+	let pMessage = document.querySelector("#message")
+	pMessage.textContent = `You win! ${playerWeapon} beats ${cpuWeapon}`
 	playerScore++
+	updateScore()
 }
-function loseRound(weapon1, weapon2) {
-	refereeMessage = `You lose... ${weapon2} beats ${weapon1}`
+function loseRound(playerWeapon, cpuWeapon) {
+	let pMessage = document.querySelector("#message")
+	pMessage.textContent = `You lose... ${cpuWeapon} beats ${playerWeapon}`
 	cpuScore++
+	updateScore()
 }
-function drawRound(weapon1, weapon2) {
-	refereeMessage = `It's a draw: ${weapon1} against ${weapon2}`
+function drawRound(playerWeapon, cpuWeapon) {
+	let pMessage = document.querySelector("#message")
+	pMessage.textContent = `It's a draw: ${playerWeapon} against ${cpuWeapon}`
+}
+
+function declareWinner() {
+	let pMessage = document.querySelector("#message")
+	pScore.textContent = `Score: ${playerScore} - ${cpuScore}`
 }
 
 function updateScore() {
-	scoreMessage = `Score: ${playerScore} - ${cpuScore}`
+	let pScore = document.querySelector("#score")
+	pScore.textContent = `Score: ${playerScore} - ${cpuScore}`
 }
 
-while (true) {
-	playRound(getPlayerWeaponChoice(), getCpuWeaponChoice())
-}
+activateWeaponButtons()
