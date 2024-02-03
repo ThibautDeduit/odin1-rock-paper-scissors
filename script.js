@@ -3,7 +3,7 @@ let playerScore = 0
 let cpuScore = 0
 
 function activateWeaponButtons() {
-	let weaponButtons = document.querySelectorAll("button")
+	let weaponButtons = document.querySelectorAll(".weapon")
 	weaponButtons.forEach((button) => {
 		button.addEventListener("click", playRound)
 	})
@@ -42,23 +42,30 @@ function updateScore() {
 }
 
 function declareWinner() {
+	// let outcomeP = document.createElement("p")
+	// outcomeP.setAttribute("id", "outcome")
 	let outcomeP = document.querySelector("#outcome")
+	outcomeP.style.display = "block"
 	if (playerScore == 5) {
 		outcomeP.textContent = "YOU WON THE MATCH!"
 	} else if (cpuScore == 5) {
 		outcomeP.textContent = "Better luck next time..."
 	}
+	// let footer = document.querySelector("footer")
+	// footer.appendChild(outcomeP)
 
-	let weaponButtons = document.querySelectorAll("button")
+	let weaponButtons = document.querySelectorAll(".weapon")
 	weaponButtons.forEach((button) => {
 		button.setAttribute("disabled", "")
 	})
 
-	let resetButton = document.createElement("button")
-	resetButton.setAttribute("id", "reset")
-	resetButton.textContent = "Play again?"
+	// let resetButton = document.createElement("button")
+	// resetButton.setAttribute("id", "reset")
+	// resetButton.textContent = "Play again?"
+	let resetButton = document.querySelector("#reset")
+	resetButton.style.display = "inline"
 	resetButton.addEventListener("click", newMatch)
-	document.body.appendChild(resetButton)
+	// footer.appendChild(resetButton)
 }
 
 function newMatch() {
@@ -66,11 +73,13 @@ function newMatch() {
 	cpuScore = 0
 	updateScore()
 
-	let resetButton = document.querySelector("#reset")
-	resetButton.remove()
-
 	let outcomeP = document.querySelector("#outcome")
 	outcomeP.textContent = ""
+	outcomeP.style.display = "none"
+	// let footer = document.querySelector("footer")
+	// footer.textContent = ""
+	let resetButton = document.querySelector("#reset")
+	resetButton.style.display = "none"
 
 	let weaponButtons = document.querySelectorAll("button")
 	weaponButtons.forEach((button) => {

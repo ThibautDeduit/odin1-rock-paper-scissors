@@ -4,18 +4,29 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<title>title</title>
-		<!-- <link rel="stylesheet" href="style.css"> -->
+		<link rel="stylesheet" href="style.css">
 		<script src="script.js" defer></script>
 	</head>
 	<body>
-		<h1>Rock Paper Scissors</h1>
-		<p id="score">Score: 0 - 0</p>
-		<div>
-			<button value="Rock">Rock</button>
-			<button value="Paper">Paper</button>
-			<button value="Scissors">Scissors</button>
-		</div>
-		<p id="referee">Champion, pick your weapon.</p>
-		<p id="outcome"></p>
+
+		<header>
+			<h1>Rock Paper Scissors</h1>
+		</header>
+
+		<main>
+			<p id="score">Score: 0 - 0</p>
+			<div id="weapons">
+				<button class="weapon" value="Rock">Rock</button>
+				<button class="weapon" value="Paper">Paper</button>
+				<button class="weapon" value="Scissors">Scissors</button>
+			</div>
+			<p id="referee">Champion, pick your weapon.</p>
+		</main>
+
+		<footer>
+			<p id="outcome"></p>
+			<button id="reset" hidden>Play again?</button>
+		</footer>
+
 	</body>
 </html>
